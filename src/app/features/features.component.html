@@ -1,1 +1,19 @@
-<p>features works!</p>
+<main>
+  <div style="display: flex">
+    <div class="tri-column trending-artists">
+      <h3>Популярные исполнители</h3>
+      <div *ngFor="let artist of artists" class="artist-entry">
+        <div>
+          <img [src]="'../../assets/img/' + artist.imageUrl" [alt]="artist.name" />
+        </div>
+        <div class="artist-data">
+          <span class="artist-name"> {{ artist.name }} </span>
+          <br />
+          <span class="artist-genres"> {{ artist.genres }} </span>
+        </div>
+      </div>
+    </div>
+    <div class="tri-column" style="background: #777777">trending albums</div>
+    <div class="tri-column" style="background: #aaaaaa">trending reviews</div>
+  </div>
+</main>
