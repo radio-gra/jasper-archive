@@ -17,4 +17,8 @@ export class AlbumService {
   public getTrendingAlbums(amount: number = 5): Observable<Album[]> {
     return this.http.get<Album[]>('http://localhost:1337/album/trending?take=' + amount);
   }
+
+  public getAlbumsForArtist(artistId: string): Observable<Album[]> {
+    return this.http.get<Album[]>('http://localhost:1337/album/forartist/' + artistId);
+  }
 }

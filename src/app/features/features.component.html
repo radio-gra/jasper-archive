@@ -2,7 +2,7 @@
   <div style="display: flex">
     <div class="tri-column trending-artists">
       <h3>Популярные исполнители</h3>
-      <div *ngFor="let artist of artists" class="artist-entry">
+      <div *ngFor="let artist of artists" [routerLink]="'/artist/' + artist._id" class="artist-entry">
         <div>
           <img [src]="'../../assets/img/' + artist.imageUrl" [alt]="artist.name" />
         </div>

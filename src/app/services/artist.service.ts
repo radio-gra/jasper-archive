@@ -9,6 +9,10 @@ import {Artist} from '../models/artist.model';
 export class ArtistService {
   constructor(private http: HttpClient) {}
 
+  public getArtistById(id: string) {
+    return this.http.get<Artist>('http://localhost:1337/artist/' + id);
+  }
+
   public getArtists(): Observable<Artist[]> {
     return this.http.get<Artist[]>('http://localhost:1337/artist');
   }

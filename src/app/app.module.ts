@@ -6,9 +6,10 @@ import {AppComponent} from './app.component';
 import {FeaturesComponent} from './features/features.component';
 import {NavComponent} from './nav/nav.component';
 import {HttpClientModule} from '@angular/common/http';
+import {ArtistPageComponent} from './artist-page/artist-page.component';
 
 @NgModule({
-  declarations: [AppComponent, FeaturesComponent, NavComponent],
+  declarations: [AppComponent, FeaturesComponent, NavComponent, ArtistPageComponent],
   imports: [BrowserModule, AppRoutingModule, HttpClientModule],
   providers: [],
   bootstrap: [AppComponent],
