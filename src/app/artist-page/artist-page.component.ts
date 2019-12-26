@@ -14,6 +14,7 @@ import {Album} from '../models/album.model';
 export class ArtistPageComponent implements OnInit {
   public pageId: string;
   public artist: ArtistExtended;
+  public loading: boolean = true;
   constructor(
     private route: ActivatedRoute,
     private artistService: ArtistService,
@@ -26,6 +27,7 @@ export class ArtistPageComponent implements OnInit {
       this.artist = artist as ArtistExtended;
       this.albumService.getAlbumsForArtist(this.pageId).subscribe((albums: Album[]) => {
         this.artist.albums = albums;
+        this.loading = false;
       });
     });
   }

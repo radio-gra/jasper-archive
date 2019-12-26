@@ -1,3 +1,6 @@
+<div *ngIf="loading" class="overlay-wrapper" style="position:relative">
+  <div class="overlay">Загрузка...</div>
+</div>
 <main>
   <div class="artist-header" style="display: flex">
     <div class="artist-image">
@@ -22,7 +25,7 @@
     </div>
     <div *ngFor="let album of artist.albums" class="album-wrapper">
       <div class="album-year-plaque">{{ album.year }}</div>
-      <div class="album-info">
+      <div class="album-info" [routerLink]="'/album/' + album._id">
         <div class="album-name">{{ album.name }}</div>
         <div class="album-genres">{{ album.genres }}</div>
       </div>

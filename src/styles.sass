@@ -1,8 +1,24 @@
 /* You can add global styles to this file, and also import other style files */
-body
-  margin: 0
-  background-color: #eeeeee
-
 @import url('https://fonts.googleapis.com/css?family=Open+Sans:700&display=swap&subset=cyrillic')
 @import url('https://fonts.googleapis.com/css?family=Yanone+Kaffeesatz:200,300,400,500,600,700&display=swap&subset=cyrillic,latin-ext')
 @import url('https://fonts.googleapis.com/css?family=Dosis&display=swap')
+
+.overlay-wrapper
+  position: relative
+
+.overlay
+  position: absolute
+  height: calc(100vh - 50px)
+  line-height: calc(100vh - 50px)
+  width: 100vw
+  z-index: 2000
+  background: #777777
+  opacity: 90%
+  text-align: center
+  color: white
+  font-size: 100px
+  font-family: Tahoma, sans-serif
+
+body
+  margin: 0
+  background-color: #eeeeee
