@@ -1,4 +1,6 @@
-export class Artist {
+import {Album} from './album.model';
+
+export class ArtistExtended {
   public _id: string;
   public name: string;
   public year: number;
@@ -6,4 +8,5 @@ export class Artist {
   public trending: boolean;
   public trendingDate: Date;
   public imageUrl: string;
+  public albums: Array<Album>;
 }
