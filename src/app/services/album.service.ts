@@ -10,11 +10,19 @@ import {Album} from '../models/album.model';
 export class AlbumService {
   constructor(private http: HttpClient) {}
 
+  public getAlbumById(id: string): Observable<Album> {
+    return this.http.get<Album>('http://localhost:1337/album/' + id);
+  }
+
   public getAlbums(): Observable<Album[]> {
     return this.http.get<Album[]>('http://localhost:1337/album');
   }
 
   public getTrendingAlbums(amount: number = 5): Observable<Album[]> {
     return this.http.get<Album[]>('http://localhost:1337/album/trending?take=' + amount);
+  }
+
+  public getAlbumsForArtist(artistId: string): Observable<Album[]> {
+    return this.http.get<Album[]>('http://localhost:1337/album/forartist/' + artistId);
   }
 }

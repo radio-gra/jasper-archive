@@ -1,0 +1,37 @@
+<div *ngIf="loading" class="overlay-wrapper" style="position:relative">
+  <div class="overlay">Загрузка...</div>
+</div>
+<main>
+  <div class="artist-header" style="display: flex">
+    <div class="artist-image">
+      <img [src]="'../../assets/img/' + artist.imageUrl" [alt]="artist.name" />
+    </div>
+    <div class="artist-info">
+      <div class="artist-name">{{ artist.name }}</div>
+      <br />
+      <div class="artist-year">
+        Начало творчества: <span class="value">{{ artist.year }}</span>
+      </div>
+      <br />
+      <div class="artist-genres">
+        Основные жанры: <br />
+        <span class="value">{{ artist.genres }}</span>
+      </div>
+    </div>
+  </div>
+  <div class="artist-albums" style="text-align: center">
+    <div class="artist-albums-header">
+      <h3>Альбомы {{ artist.name }}</h3>
+    </div>
+    <div *ngFor="let album of artist.albums" class="album-wrapper">
+      <div class="album-year-plaque">{{ album.year }}</div>
+      <div class="album-info" [routerLink]="'/album/' + album._id">
+        <div class="album-name">{{ album.name }}</div>
+        <div class="album-genres">{{ album.genres }}</div>
+      </div>
+      <div [style.background]="'url(../../assets/img/' + album.imageUrl + ')'" class="album-cover">
+        <div class="album-rating-plaque">{{ album.avgRating ? album.avgRating : '9.13' }}</div>
+      </div>
+    </div>
+  </div>
+</main>

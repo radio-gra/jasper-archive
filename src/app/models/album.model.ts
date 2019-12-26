@@ -1,7 +1,7 @@
 import {Artist} from './artist.model';
 
 export class Album {
-  public id: string;
+  public _id: string;
   public name: string;
   public year: number;
   public genres: Array<string>;

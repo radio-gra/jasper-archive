@@ -10,6 +10,7 @@ import {AlbumService} from '../services/album.service';
   styleUrls: ['./features.component.sass'],
 })
 export class FeaturesComponent implements OnInit {
+  public loading: boolean = true;
   public artists: Artist[] = [];
   public albums: Album[] = [];
   public reviews: any[] = [
@@ -49,11 +50,12 @@ export class FeaturesComponent implements OnInit {
   constructor(private artistService: ArtistService, private albumService: AlbumService) {}
 
   public ngOnInit(): void {
-    this.artistService.getTrendingArtists(3).subscribe((data: Artist[]) => {
-      this.artists = data;
-    });
-    this.albumService.getTrendingAlbums(3).subscribe((data: Album[]) => {
-      this.albums = data;
+    this.artistService.getTrendingArtists(3).subscribe((artists: Artist[]) => {
+      this.artists = artists;
+      this.albumService.getTrendingAlbums(3).subscribe((albums: Album[]) => {
+        this.albums = albums;
+        this.loading = false;
+      });
     });
   }
 }
