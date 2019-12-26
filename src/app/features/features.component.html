@@ -1,0 +1,44 @@
+<main>
+  <div style="display: flex">
+    <div class="tri-column trending-artists">
+      <h3>Популярные исполнители</h3>
+      <div *ngFor="let artist of artists" class="artist-entry">
+        <div>
+          <img [src]="'../../assets/img/' + artist.imageUrl" [alt]="artist.name" />
+        </div>
+        <div class="artist-data">
+          <span class="artist-name"> {{ artist.name }} </span>
+          <br />
+          <span class="artist-genres"> {{ artist.genres }} </span>
+        </div>
+      </div>
+    </div>
+    <div class="tri-column trending-albums">
+      <h3>Популярные альбомы</h3>
+      <div *ngFor="let album of albums" class="album-entry">
+        <div>
+          <img [src]="'../../assets/img/' + album.imageUrl" [alt]="album.name" />
+        </div>
+        <div class="album-data">
+          <span class="album-name"> {{ album.name }} </span>
+          <span class="album-year"> {{ album.year }} </span>
+          <br />
+          <span class="album-artist"> {{ album.artist.name }} </span>
+          <br />
+          <span class="album-genres"> {{ album.genres }} </span>
+        </div>
+      </div>
+    </div>
+    <div class="tri-column featured-reviews">
+      <h3>Избранные рецензии</h3>
+      <div *ngFor="let review of reviews" class="review-entry">
+        <div class="review-body">
+          {{ review.body }}
+        </div>
+        <div class="review-author">
+          <span class="author-name"> - {{ review.author }} </span>
+        </div>
+      </div>
+    </div>
+  </div>
+</main>
