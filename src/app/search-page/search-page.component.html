@@ -1,0 +1,29 @@
+<main>
+  <div class="search-bar">
+    <input type="text" [formControl]="searchQuery" />
+    <select [formControl]="searchType">
+      <option selected value="name">по имени</option>
+      <option value="artist">по исполнителю</option>
+    </select>
+    <button (click)="search()">Поиск</button>
+  </div>
+
+  <div class="search-results">
+    <div *ngIf="loading" class="overlay-wrapper" style="position:relative">
+      <div class="overlay">Загрузка...</div>
+    </div>
+    <div *ngFor="let album of searchResults" [routerLink]="'/album/' + album._id" class="album-entry">
+      <div>
+        <img [src]="'../../assets/img/' + album.imageUrl" [alt]="album.name" />
+      </div>
+      <div class="album-data">
+        <span class="album-name"> {{ album.name }} </span>
+        <span class="album-year"> {{ album.year }} </span>
+        <br />
+        <span class="album-artist"> {{ album.artist.name }} </span>
+        <br />
+        <span class="album-genres"> {{ album.genres }} </span>
+      </div>
+    </div>
+  </div>
+</main>

@@ -25,4 +25,14 @@ export class AlbumService {
   public getAlbumsForArtist(artistId: string): Observable<Album[]> {
     return this.http.get<Album[]>('http://localhost:1337/album/forartist/' + artistId);
   }
+
+  public searchAlbum(query: string, type: string): Observable<Album[]> {
+    if (type === 'name') {
+      return this.http.get<Album[]>('http://localhost:1337/album/where?name=' + query);
+    } else if (type === 'artist') {
+      return this.http.get<Album[]>('http://localhost:1337/album/where?artist=' + query);
+    } else {
+      return new Observable<Album[]>(); // there has to be a smarter way about it
+    }
+  }
 }
