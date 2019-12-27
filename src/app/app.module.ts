@@ -10,6 +10,7 @@ import {ArtistPageComponent} from './artist-page/artist-page.component';
 import {AlbumPageComponent} from './album-page/album-page.component';
 import {SearchPageComponent} from './search-page/search-page.component';
 import {ReactiveFormsModule} from '@angular/forms';
+import {SignupPageComponent} from './signup-page/signup-page.component';
 
 @NgModule({
   declarations: [
@@ -19,6 +20,7 @@ import {ReactiveFormsModule} from '@angular/forms';
     ArtistPageComponent,
     AlbumPageComponent,
     SearchPageComponent,
+    SignupPageComponent,
   ],
   imports: [BrowserModule, AppRoutingModule, HttpClientModule, ReactiveFormsModule],
   providers: [],

@@ -1,0 +1,48 @@
+<div class="signup-form">
+  <h2 class="form-caption">Регистрация</h2>
+  <div class="form-fields" [formGroup]="signupForm" (ngSubmit)="submit()">
+    <div class="form-row">
+      <input
+        type="text"
+        [class.invalid]="signupForm.controls['email'].invalid && submitted"
+        class="field-email"
+        formControlName="email"
+        placeholder="Адрес электронной почты"
+      />
+      <div *ngIf="duplicateEmail && signupForm.controls['email'].pristine" class="dupe">
+        <span>Такой адрес уже зарегистрирован</span>
+      </div>
+    </div>
+    <div class="form-row">
+      <input
+        type="text"
+        [class.invalid]="signupForm.controls['username'].invalid && submitted"
+        class="field-username"
+        formControlName="username"
+        placeholder="Имя пользователя"
+      />
+      <div *ngIf="duplicateUsername && signupForm.controls['username'].pristine" class="dupe">
+        <span>Такое имя пользователя уже зарегистрировано</span>
+      </div>
+    </div>
+    <div class="form-row">
+      <input
+        type="password"
+        [class.invalid]="signupForm.controls['password'].invalid && submitted"
+        class="field-password"
+        formControlName="password"
+        placeholder="Пароль"
+      />
+    </div>
+    <div class="form-row">
+      <input
+        type="password"
+        [class.invalid]="(signupForm.controls['passwordRepeat'].invalid || !passwordsMatch) && submitted"
+        class="field-password"
+        formControlName="passwordRepeat"
+        placeholder="Повторите пароль"
+      />
+    </div>
+    <button type="submit" (click)="submit()" class="submit-button">Зарегистрироваться</button>
+  </div>
+</div>
