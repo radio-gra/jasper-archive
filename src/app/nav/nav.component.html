@@ -4,7 +4,13 @@
     <div class="charts" style="width:10%">Чарты</div>
     <div class="search" style="width:10%" [routerLink]="['/search']">Поиск</div>
     <div class="rubberband" style="width:40%"></div>
-    <div class="login" style="width:10%">Войти</div>
-    <div class="signup" style="width:10%">Регистрация</div>
+    <ng-container *ngIf="!username">
+      <div class="login" style="width:10%" [routerLink]="['/login']">Войти</div>
+      <div class="signup" style="width:10%" [routerLink]="['/signup']">Регистрация</div>
+    </ng-container>
+    <ng-container *ngIf="username">
+      <div class="username" style="width:10%">Привет, {{ username }}</div>
+      <div class="logout" style="width:10%" (click)="onLogout()">Выйти</div>
+    </ng-container>
   </div>
 </header>

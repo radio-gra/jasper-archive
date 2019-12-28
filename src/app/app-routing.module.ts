@@ -4,10 +4,14 @@ import {FeaturesComponent} from './features/features.component';
 import {ArtistPageComponent} from './artist-page/artist-page.component';
 import {AlbumPageComponent} from './album-page/album-page.component';
 import {SearchPageComponent} from './search-page/search-page.component';
+import {SignupPageComponent} from './signup-page/signup-page.component';
+import {LoginPageComponent} from './login-page/login-page.component';
 
 const routes: Routes = [
   {path: '', component: FeaturesComponent},
   {path: 'search', component: SearchPageComponent},
+  {path: 'signup', component: SignupPageComponent},
+  {path: 'login', component: LoginPageComponent},
   {path: 'artist/:id', component: ArtistPageComponent},
   {path: 'album/:id', component: AlbumPageComponent},
 ];
