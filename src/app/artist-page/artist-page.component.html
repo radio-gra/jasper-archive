@@ -1,7 +1,7 @@
 <div *ngIf="loading" class="overlay-wrapper" style="position:relative">
   <div class="overlay">Загрузка...</div>
 </div>
-<main>
+<main *ngIf="artist">
   <div class="artist-header" style="display: flex">
     <div class="artist-image">
       <img [src]="'../../assets/img/' + artist.imageUrl" [alt]="artist.name" />
