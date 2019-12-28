@@ -17,10 +17,10 @@ export class SignupPageComponent implements OnInit {
 
   constructor(private formBuilder: FormBuilder, private authService: AuthService, private router: Router) {
     this.signupForm = this.formBuilder.group({
-      username: ['dummy', [Validators.required, Validators.minLength(3)]],
-      email: ['dummy@email', [Validators.required, Validators.email]],
-      password: ['1q2w3e', [Validators.required, Validators.minLength(5)]],
-      passwordRepeat: ['1q2w3e', [Validators.required, Validators.minLength(5)]],
+      username: ['', [Validators.required, Validators.minLength(3)]],
+      email: ['', [Validators.required, Validators.email]],
+      password: ['', [Validators.required, Validators.minLength(5)]],
+      passwordRepeat: ['', [Validators.required, Validators.minLength(5)]],
     });
     this.signupForm.setValidators([this.checkPasswordMatching]);
   }
@@ -44,7 +44,7 @@ export class SignupPageComponent implements OnInit {
     this.authService.checkUserUniqueness(newUser).subscribe((data: Array<any>) => {
       if (data[0].unique === true && data[1].unique === true) {
         this.authService.registerUser(newUser).subscribe((res: any) => {
-          this.router.navigate(['/']);
+          this.router.navigate(['/login']);
         });
       } else {
         if (data[0].unique === false) {

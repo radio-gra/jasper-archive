@@ -1,6 +1,6 @@
 <div class="signup-form">
   <h2 class="form-caption">Регистрация</h2>
-  <div class="form-fields" [formGroup]="signupForm" (ngSubmit)="submit()">
+  <div class="form-fields" [formGroup]="signupForm">
     <div class="form-row">
       <input
         type="text"
@@ -43,6 +43,6 @@
         placeholder="Повторите пароль"
       />
     </div>
-    <button type="submit" (click)="submit()" class="submit-button">Зарегистрироваться</button>
+    <button type="submit" class="submit-button">Зарегистрироваться</button>
   </div>
 </div>

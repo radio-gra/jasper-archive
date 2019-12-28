@@ -1,0 +1,27 @@
+<div class="login-form">
+  <h2 class="form-caption">Войти</h2>
+  <div class="form-fields" [formGroup]="loginForm">
+    <div class="form-row">
+      <input
+        type="text"
+        [class.invalid]="loginForm.controls['username'].invalid && submitted"
+        class="field-username"
+        formControlName="username"
+        placeholder="Имя пользователя"
+      />
+    </div>
+    <div class="form-row">
+      <input
+        type="password"
+        [class.invalid]="loginForm.controls['password'].invalid && submitted"
+        class="field-password"
+        formControlName="password"
+        placeholder="Пароль"
+      />
+    </div>
+    <div *ngIf="authFailed && loginForm.pristine" class="denied">
+      <span>Имя пользователя или пароль неверны</span>
+    </div>
+    <button type="submit" (click)="submit()" class="submit-button">Войти</button>
+  </div>
+</div>
