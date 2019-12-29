@@ -27,6 +27,26 @@
       </div>
     </div>
   </div>
-  <div>rating placeholder</div>
+  <div class="rating-panel">
+    <div *ngIf="authService.isLoggedIn()" style="display:flex">
+      <div *ngIf="!isRatingNow" style="display:flex">
+        <div *ngIf="userRating !== 0">Ваша оценка: {{ userRating }}</div>
+        <div *ngIf="userRating === 0">
+          Вы еще не оценили этот альбом
+        </div>
+        <button (click)="isRatingNow = true">{{ userRating === 0 ? 'Поставить' : 'Изменить' }} оценку</button>
+      </div>
+      <div *ngIf="isRatingNow">
+        <input #ratingSlider (input)="updateUserRating()" type="range" id="rating" min="1" max="10" />
+        <label for="rating">{{ userRating }}</label>
+        <button (click)="submitUserRating()">Подтвердить</button>
+        <button (click)="deleteUserRating()">Удалить оценку</button>
+        <button (click)="isRatingNow = false">x</button>
+      </div>
+    </div>
+    <div *ngIf="!authService.isLoggedIn()">
+      <span>Войдите или зарегистрируйтесь, чтобы поставить оценку</span>
+    </div>
+  </div>
   <div>reviews placeholder</div>
 </main>
