@@ -22,11 +22,36 @@
           </div>
         </div>
         <div class="album-rating-plaque">
-          {{ album.avgRating ? album.avgRating : 9.13 }}
+          {{ album.avgRating ? (album.avgRating | number: '1.2') : '?' }}
         </div>
       </div>
     </div>
   </div>
-  <div>rating placeholder</div>
+  <div class="rating-panel">
+    <div *ngIf="authService.isLoggedIn()" class="panel-loggedin">
+      <div *ngIf="!isRatingNow" style="display:inline-flex">
+        <div class="current-rating" style="display:flex" *ngIf="hasSubmittedRating">
+          <div>Ваша оценка:</div>
+          <div class="rating-label">{{ submittedRatingValue }}</div>
+        </div>
+        <div class="current-rating" *ngIf="!hasSubmittedRating">
+          Вы еще не оценили этот альбом
+        </div>
+        <button class="large-rating-button" (click)="startRating()">
+          {{ userRating === 0 ? 'Поставить' : 'Изменить' }} оценку
+        </button>
+      </div>
+      <div *ngIf="isRatingNow">
+        <input class="slider" #ratingSlider (input)="updateUserRating()" type="range" id="rating" min="1" max="10" />
+        <label class="rating-label" for="rating">{{ userRating }}</label>
+        <button class="large-rating-button" (click)="submitUserRating()">Подтвердить</button>
+        <button class="large-rating-button" (click)="deleteUserRating()">Удалить оценку</button>
+        <button class="small-rating-button" (click)="cancelUserRating()">x</button>
+      </div>
+    </div>
+    <div *ngIf="!authService.isLoggedIn()" class="panel-anonymous">
+      <span>Войдите или зарегистрируйтесь, чтобы поставить оценку</span>
+    </div>
+  </div>
   <div>reviews placeholder</div>
 </main>
