@@ -16,6 +16,8 @@ export class AlbumPageComponent implements OnInit, AfterViewChecked {
   public album: Album;
   public userRating: number = 0;
   public loading: boolean = true;
+  public hasSubmittedRating: boolean = false;
+  public submittedRatingValue: number = 0;
   public isRatingNow: boolean = false;
 
   @ViewChild('ratingSlider', {static: false})
@@ -37,6 +39,8 @@ export class AlbumPageComponent implements OnInit, AfterViewChecked {
       if (this.authService.isLoggedIn()) {
         this.ratingService.getAuthUserRatingForAlbum(this.album._id).subscribe((rating: Rating) => {
           this.userRating = rating.value;
+          this.hasSubmittedRating = true;
+          this.submittedRatingValue = rating.value;
         });
       }
     });
@@ -46,6 +50,15 @@ export class AlbumPageComponent implements OnInit, AfterViewChecked {
     if (this.ratingSlider && this.ratingSlider.nativeElement.value !== this.userRating) {
       this.ratingSlider.nativeElement.value = this.userRating;
     }
+  }
+
+  public startRating(): void {
+    if (this.hasSubmittedRating) {
+      this.userRating = this.submittedRatingValue;
+    } else {
+      this.userRating = 5;
+    }
+    this.isRatingNow = true;
   }
 
   public updateUserRating(): void {
@@ -60,6 +73,8 @@ export class AlbumPageComponent implements OnInit, AfterViewChecked {
     this.ratingService.rateAlbum(this.album._id, this.userRating).subscribe((rating: Rating) => {
       this.userRating = rating.value;
       this.isRatingNow = false;
+      this.hasSubmittedRating = true;
+      this.submittedRatingValue = rating.value;
     });
   }
 
@@ -67,6 +82,12 @@ export class AlbumPageComponent implements OnInit, AfterViewChecked {
     this.ratingService.deleteAuthUserRating(this.album._id).subscribe((rating: Rating) => {
       this.userRating = 0;
       this.isRatingNow = false;
+      this.hasSubmittedRating = false;
     });
+  }
+
+  public cancelUserRating(): void {
+    this.userRating = 0;
+    this.isRatingNow = false;
   }
 }

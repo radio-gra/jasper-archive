@@ -84,3 +84,68 @@ main
   font-size: 32px
   color: #ff8566
   font-weight: 300
+
+.rating-panel
+  height: 100px
+  background-color: black
+  color: white
+
+  .panel-anonymous,
+  .panel-loggedin
+    text-align: center
+    margin-top: 30px
+    font-size: 30px
+    padding-top: 30px
+
+  .current-rating
+    margin-top: 2px
+
+
+  .large-rating-button,
+  .small-rating-button
+    margin-left: 15px
+    height: 35px
+    width: 175px
+    border-radius: 0
+    border: 1px solid #ff8566
+    color: #ff8566
+    background-color: black
+    font-size: 16px
+    font-family: Tahoma, sans-serif
+    margin-top: 5px
+
+    &:hover
+      background-color: #ff8566
+      color: black
+
+  .small-rating-button
+    width: 35px
+
+  .slider
+    width: 400px
+    height: 5px
+    border: 1px solid #ff8566
+    border-radius: 0
+    background-color: black
+
+    &::-webkit-slider-thumb,
+    &::-moz-range-thumb
+      -webkit-appearance: none
+      appearance: none
+      height: 12px
+      width: 35px
+      border-radius: 10%
+      border-color: #ff8566
+      background-color: #ff8566
+
+
+  .rating-label
+    display: inline-block
+    height: 35px
+    width: 35px
+    margin-left: 15px
+    line-height: 35px
+    text-align: center
+    font-family: 'Dosis', sans-serif
+    font-weight: 200
+    vertical-align: middle
