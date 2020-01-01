@@ -22,7 +22,7 @@
           </div>
         </div>
         <div class="album-rating-plaque">
-          {{ album.avgRating ? album.avgRating : 9.13 }}
+          {{ album.avgRating ? (album.avgRating | number: '1.2') : '?' }}
         </div>
       </div>
     </div>
