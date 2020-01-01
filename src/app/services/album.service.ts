@@ -18,6 +18,10 @@ export class AlbumService {
     return this.http.get<Album[]>('http://localhost:1337/album');
   }
 
+  public getChart(amount: number = 5): Observable<Album[]> {
+    return this.http.get<Album[]>('http://localhost:1337/album/chart?take=' + amount);
+  }
+
   public getTrendingAlbums(amount: number = 5): Observable<Album[]> {
     return this.http.get<Album[]>('http://localhost:1337/album/trending?take=' + amount);
   }

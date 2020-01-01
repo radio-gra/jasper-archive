@@ -1,0 +1,23 @@
+<main>
+  <h3>Альбомы с наивысшим рейтингом</h3>
+  <div *ngFor="let album of chart; let i = index" class="album-wrapper">
+    <div class="index-plaque" [routerLink]="'/album/' + album._id">{{ i + 1 | number: '2.0' }}</div>
+    <div class="album-info">
+      <div class="album-name">
+        <span [routerLink]="'/album/' + album._id">{{ album.name }}</span>
+      </div>
+      <div class="album-artist">
+        <span [routerLink]="'/artist/' + album.artist._id">{{ album.artist.name }}</span>
+      </div>
+      <div class="album-genres">{{ album.genres }}</div>
+      <div class="album-year">{{ album.year }}</div>
+    </div>
+    <div
+      [style.background]="'url(../../assets/img/' + album.imageUrl + ')'"
+      [routerLink]="'/album/' + album._id"
+      class="album-cover"
+    >
+      <div class="album-rating-plaque">{{ album.avgRating ? (album.avgRating | number: '1.2') : '?' }}</div>
+    </div>
+  </div>
+</main>

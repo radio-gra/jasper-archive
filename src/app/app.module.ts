@@ -12,6 +12,7 @@ import {SearchPageComponent} from './search-page/search-page.component';
 import {ReactiveFormsModule} from '@angular/forms';
 import {SignupPageComponent} from './signup-page/signup-page.component';
 import {LoginPageComponent} from './login-page/login-page.component';
+import {ChartPageComponent} from './chart-page/chart-page.component';
 
 @NgModule({
   declarations: [
@@ -23,6 +24,7 @@ import {LoginPageComponent} from './login-page/login-page.component';
     SearchPageComponent,
     SignupPageComponent,
     LoginPageComponent,
+    ChartPageComponent,
   ],
   imports: [BrowserModule, AppRoutingModule, HttpClientModule, ReactiveFormsModule],
   providers: [],
