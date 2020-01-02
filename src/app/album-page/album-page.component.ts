@@ -31,6 +31,7 @@ export class AlbumPageComponent implements OnInit, AfterViewChecked {
   public isReviewingNow: boolean = false;
   public hasSubmittedReview: boolean = false;
   public submittedReviewValue: ReviewTitleBody = new ReviewTitleBody();
+  public otherReviews: Review[] = [];
 
   @ViewChild('ratingSlider', {static: false})
   public ratingSlider: ElementRef;
@@ -65,6 +66,14 @@ export class AlbumPageComponent implements OnInit, AfterViewChecked {
           this.hasSubmittedReview = true;
           this.submittedReviewValue.title = review.title;
           this.submittedReviewValue.body = review.body;
+        });
+
+        this.reviewService.getReviewsForAlbumExceptOwn(this.album._id).subscribe((reviews: Review[]) => {
+          this.otherReviews = reviews;
+        });
+      } else {
+        this.reviewService.getReviewsForAlbum(this.album._id).subscribe((reviews: Review[]) => {
+          this.otherReviews = reviews;
         });
       }
     });

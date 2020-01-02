@@ -14,6 +14,14 @@ export class ReviewService {
     return this.http.get<Review[]>('http://localhost:1337/review/foralbum/' + albumId);
   }
 
+  public getReviewsForAlbumExceptOwn(albumId: string): Observable<Review[]> {
+    const headers: HttpHeaders = new HttpHeaders({
+      'Content-Type': 'application/json',
+      Authorization: 'Bearer ' + this.authService.authToken,
+    });
+    return this.http.get<Review[]>('http://localhost:1337/review/other/' + albumId, {headers: headers});
+  }
+
   public deleteReview(reviewId: string): Observable<Review> {
     return this.http.delete<Review>('http://localhost:1337/review/' + reviewId);
   }

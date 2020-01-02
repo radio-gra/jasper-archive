@@ -90,4 +90,13 @@
       <button class="small-button" (click)="cancelUserReview()">x</button>
     </div>
   </div>
+  <div *ngIf="otherReviews.length > 0">
+    <h3>Отзывы</h3>
+    <div *ngFor="let review of otherReviews">
+      <div>{{ review.title }}</div>
+      <div>{{ review.body }}</div>
+      <div>{{ review.user.username }}</div>
+      <div>{{ review.reviewDate | date: 'dd MMM yyyy HH:mm' }}</div>
+    </div>
+  </div>
 </main>
