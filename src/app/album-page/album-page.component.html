@@ -56,9 +56,9 @@
   <div *ngIf="authService.isLoggedIn()" class="review-panel">
     <div *ngIf="!hasSubmittedReview && !isReviewingNow" class="review-panel-inner">
       <div>
-        Вы еще не написали отзыв на этот альбом
+        Вы еще не написали отзыва на этот альбом
       </div>
-      <button class="large-button" (click)="startReviewing()">Написать отзыв</button>
+      <button class="large-button" (click)="startReviewing()">Написать рецензию</button>
     </div>
     <div
       *ngIf="hasSubmittedReview && !isReviewingNow"
@@ -66,7 +66,7 @@
       style="display: inline-block"
     >
       <div [ngClass]="pocketExpanded ? 'pocket-expanded' : 'pocket'" (click)="pocketExpanded = !pocketExpanded">
-        {{ pocketExpanded ? 'Скрыть' : 'Показать' }} отзыв
+        {{ pocketExpanded ? 'Скрыть' : 'Показать' }} рецензию
       </div>
       <ng-container *ngIf="pocketExpanded">
         <div class="submitted-review-title">{{ submittedReviewValue.title }}</div>
@@ -90,13 +90,15 @@
       <button class="small-button" (click)="cancelUserReview()">x</button>
     </div>
   </div>
-  <div *ngIf="otherReviews.length > 0">
-    <h3>Отзывы</h3>
-    <div *ngFor="let review of otherReviews">
-      <div>{{ review.title }}</div>
-      <div>{{ review.body }}</div>
-      <div>{{ review.user.username }}</div>
-      <div>{{ review.reviewDate | date: 'dd MMM yyyy HH:mm' }}</div>
+  <div *ngIf="otherReviews.length > 0" class="other-reviews">
+    <h3>Рецензии на {{ album.name }}</h3>
+    <div *ngFor="let review of otherReviews" class="review-entry">
+      <div class="review-entry-title">{{ review.title }}</div>
+      <div class="review-entry-body">{{ review.body }}</div>
+      <div class="review-entry-signature">
+        <div class="sig-user">{{ review.user.username }}</div>
+        <div class="sig-date">{{ review.reviewDate | date: 'dd MMM yyyy HH:mm' }}</div>
+      </div>
     </div>
   </div>
 </main>
