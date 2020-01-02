@@ -33,25 +33,61 @@
         <div class="current-rating" style="display:flex" *ngIf="hasSubmittedRating">
           <div>Ваша оценка:</div>
           <div class="rating-label">{{ submittedRatingValue }}</div>
+          <button class="large-button" style="margin-top: 3px" (click)="deleteUserRating()">Удалить</button>
         </div>
         <div class="current-rating" *ngIf="!hasSubmittedRating">
           Вы еще не оценили этот альбом
         </div>
-        <button class="large-rating-button" (click)="startRating()">
+        <button class="large-button" (click)="startRating()">
           {{ userRating === 0 ? 'Поставить' : 'Изменить' }} оценку
         </button>
       </div>
       <div *ngIf="isRatingNow">
         <input class="slider" #ratingSlider (input)="updateUserRating()" type="range" id="rating" min="1" max="10" />
         <label class="rating-label" for="rating">{{ userRating }}</label>
-        <button class="large-rating-button" (click)="submitUserRating()">Подтвердить</button>
-        <button class="large-rating-button" (click)="deleteUserRating()">Удалить оценку</button>
-        <button class="small-rating-button" (click)="cancelUserRating()">x</button>
+        <button class="large-button" (click)="submitUserRating()">Подтвердить</button>
+        <button class="small-button" (click)="cancelUserRating()">x</button>
       </div>
     </div>
     <div *ngIf="!authService.isLoggedIn()" class="panel-anonymous">
-      <span>Войдите или зарегистрируйтесь, чтобы поставить оценку</span>
+      <span>Войдите или зарегистрируйтесь, чтобы поставить оценку или написать отзыв</span>
     </div>
   </div>
-  <div>reviews placeholder</div>
+  <div *ngIf="authService.isLoggedIn()" class="review-panel">
+    <div *ngIf="!hasSubmittedReview && !isReviewingNow" class="review-panel-inner">
+      <div>
+        Вы еще не написали отзыв на этот альбом
+      </div>
+      <button class="large-button" (click)="startReviewing()">Написать отзыв</button>
+    </div>
+    <div
+      *ngIf="hasSubmittedReview && !isReviewingNow"
+      class="review-panel-inner-expanded"
+      style="display: inline-block"
+    >
+      <div [ngClass]="pocketExpanded ? 'pocket-expanded' : 'pocket'" (click)="pocketExpanded = !pocketExpanded">
+        {{ pocketExpanded ? 'Скрыть' : 'Показать' }} отзыв
+      </div>
+      <ng-container *ngIf="pocketExpanded">
+        <div class="submitted-review-title">{{ submittedReviewValue.title }}</div>
+        <div class="submitted-review-body">{{ submittedReviewValue.body }}</div>
+        <div style="display: inline-flex">
+          <button class="large-button" (click)="startReviewing()">Редактировать</button>
+          <button class="large-button" (click)="deleteUserReview()">Удалить</button>
+        </div>
+      </ng-container>
+    </div>
+    <div class="edit-review" *ngIf="isReviewingNow">
+      <input
+        class="input-title"
+        type="text"
+        placeholder="Заголовок"
+        style="display: block"
+        [formControl]="reviewTitle"
+      />
+      <textarea class="input-body" style="resize: none; display: block" [formControl]="reviewBody"></textarea>
+      <button class="large-button" (click)="submitUserReview()">Сохранить</button>
+      <button class="small-button" (click)="cancelUserReview()">x</button>
+    </div>
+  </div>
 </main>
