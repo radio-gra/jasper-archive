@@ -34,8 +34,8 @@ export class ReviewService {
     return this.http.get<Review>('http://localhost:1337/review/my/' + albumId, {headers: headers});
   }
 
-  public getTrendingReviews(amount: number = 5): Observable<Review[]> {
-    return this.http.get<Review[]>('http://localhost:1337/review/trending?take=' + amount);
+  public getTrendingReviews(amount: number = 5, maxLength: number = 100000): Observable<Review[]> {
+    return this.http.get<Review[]>('http://localhost:1337/review/trending?take=' + amount + '&trunc=' + maxLength);
   }
 
   public reviewAlbum(albumId: string, title: string, body: string): Observable<Review> {

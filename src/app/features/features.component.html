@@ -39,11 +39,12 @@
     <div class="tri-column featured-reviews">
       <h3>Избранные рецензии</h3>
       <div *ngFor="let review of reviews" class="review-entry">
-        <div class="review-body">
+        <div class="review-body" [routerLink]="'/album/' + review.album">
+          <h3>{{ review.title }}</h3>
           {{ review.body }}
         </div>
         <div class="review-author">
-          <span class="author-name"> - {{ review.author }} </span>
+          <span class="author-name"> - {{ review.user.username }} </span>
         </div>
       </div>
     </div>
