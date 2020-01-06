@@ -54,27 +54,39 @@ export class AlbumPageComponent implements OnInit, AfterViewChecked {
       this.loading = false;
 
       if (this.authService.isLoggedIn()) {
-        this.ratingService.getAuthUserRatingForAlbum(this.album._id).subscribe((rating: Rating) => {
-          this.userRating = rating.value;
-          this.hasSubmittedRating = true;
-          this.submittedRatingValue = rating.value;
-        });
+        this.ratingService.getAuthUserRatingForAlbum(this.album._id).subscribe(
+          (rating: Rating) => {
+            this.userRating = rating.value;
+            this.hasSubmittedRating = true;
+            this.submittedRatingValue = rating.value;
+          },
+          (err: Error) => {}
+        );
 
-        this.reviewService.getAuthUserReviewForAlbum(this.album._id).subscribe((review: Review) => {
-          this.userReview.title = review.title;
-          this.userReview.body = review.body;
-          this.hasSubmittedReview = true;
-          this.submittedReviewValue.title = review.title;
-          this.submittedReviewValue.body = review.body;
-        });
+        this.reviewService.getAuthUserReviewForAlbum(this.album._id).subscribe(
+          (review: Review) => {
+            this.userReview.title = review.title;
+            this.userReview.body = review.body;
+            this.hasSubmittedReview = true;
+            this.submittedReviewValue.title = review.title;
+            this.submittedReviewValue.body = review.body;
+          },
+          (err: Error) => {}
+        );
 
-        this.reviewService.getReviewsForAlbumExceptOwn(this.album._id).subscribe((reviews: Review[]) => {
-          this.otherReviews = reviews;
-        });
+        this.reviewService.getReviewsForAlbumExceptOwn(this.album._id).subscribe(
+          (reviews: Review[]) => {
+            this.otherReviews = reviews;
+          },
+          (err: Error) => {}
+        );
       } else {
-        this.reviewService.getReviewsForAlbum(this.album._id).subscribe((reviews: Review[]) => {
-          this.otherReviews = reviews;
-        });
+        this.reviewService.getReviewsForAlbum(this.album._id).subscribe(
+          (reviews: Review[]) => {
+            this.otherReviews = reviews;
+          },
+          (err: Error) => {}
+        );
       }
     });
   }

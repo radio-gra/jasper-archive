@@ -26,14 +26,19 @@ main
   select
     height: 42px
     line-height: 42px
-    padding-top: 7px
+    padding-top: 2px
     padding-bottom: 2px
     padding-left: 10px
     font-size: 18px
     font-family: Tahoma, sans-serif
     border: 1px solid black
+    background-color: black
+    color: #ff8566
     border-radius: 0
     width: 200px
+    -webkit-appearance: none
+    -moz-appearance: none
+
 
   button
     height: 43px
@@ -43,10 +48,17 @@ main
     padding-left: 10px
     font-size: 24px
     font-family: Tahoma, sans-serif
-    border: 1px solid black
     border-radius: 0
     min-width: 150px
     margin-left: 50px
+    border: 1px solid black
+    color: #ff8566
+    background-color: black
+
+    &:hover
+      background-color: #ff8566
+      cursor: pointer
+      color: black
 
 .search-results
   margin-top: 70px

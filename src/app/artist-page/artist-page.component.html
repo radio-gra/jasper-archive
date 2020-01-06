@@ -30,7 +30,7 @@
         <div class="album-genres">{{ album.genres }}</div>
       </div>
       <div [style.background]="'url(../../assets/img/' + album.imageUrl + ')'" class="album-cover">
-        <div class="album-rating-plaque">{{ album.avgRating ? (album.avgRating | number: '1.2') : '?' }}</div>
+        <div class="album-rating-plaque">{{ album.avgRating ? (album.avgRating | number: '1.2-2') : '?' }}</div>
       </div>
     </div>
   </div>

@@ -24,11 +24,11 @@ export class FeaturesComponent implements OnInit {
   ) {}
 
   public ngOnInit(): void {
-    this.artistService.getTrendingArtists(3).subscribe((artists: Artist[]) => {
+    this.artistService.getTrendingArtists(5).subscribe((artists: Artist[]) => {
       this.artists = artists;
-      this.albumService.getTrendingAlbums(3).subscribe((albums: Album[]) => {
+      this.albumService.getTrendingAlbums(5).subscribe((albums: Album[]) => {
         this.albums = albums;
-        this.reviewService.getTrendingReviews(3, 450).subscribe((reviews: Review[]) => {
+        this.reviewService.getTrendingReviews(5, 350).subscribe((reviews: Review[]) => {
           this.reviews = reviews;
           this.loading = false;
         });

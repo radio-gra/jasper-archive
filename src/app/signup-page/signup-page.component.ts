@@ -17,10 +17,10 @@ export class SignupPageComponent implements OnInit {
 
   constructor(private formBuilder: FormBuilder, private authService: AuthService, private router: Router) {
     this.signupForm = this.formBuilder.group({
-      username: ['', [Validators.required, Validators.minLength(3)]],
-      email: ['', [Validators.required, Validators.email]],
-      password: ['', [Validators.required, Validators.minLength(5)]],
-      passwordRepeat: ['', [Validators.required, Validators.minLength(5)]],
+      username: ['', [Validators.required, Validators.minLength(3), Validators.maxLength(32)]],
+      email: ['', [Validators.required, Validators.email], Validators.maxLength(128)],
+      password: ['', [Validators.required, Validators.minLength(5), Validators.maxLength(128)]],
+      passwordRepeat: ['', [Validators.required, Validators.minLength(5), Validators.maxLength(128)]],
     });
     this.signupForm.setValidators([this.checkPasswordMatching]);
   }

@@ -25,9 +25,15 @@ export class SearchPageComponent implements OnInit {
   public search(): void {
     this.loading = true;
     this.searchResults = [];
-    this.albumService.searchAlbum(this.searchQuery.value, this.searchType.value).subscribe((albums: Album[]) => {
-      this.searchResults = albums;
-      this.loading = false;
-    });
+    this.albumService.searchAlbum(this.searchQuery.value, this.searchType.value).subscribe(
+      (albums: Album[]) => {
+        this.searchResults = albums;
+        this.loading = false;
+      },
+      (err: Error) => {
+        this.searchResults = [];
+        this.loading = false;
+      }
+    );
   }
 }

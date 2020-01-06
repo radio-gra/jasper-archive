@@ -12,7 +12,7 @@ export class ChartPageComponent implements OnInit {
   constructor(private albumService: AlbumService) {}
 
   public ngOnInit(): void {
-    this.albumService.getChart(10).subscribe((albums: Album[]) => {
+    this.albumService.getChart(100).subscribe((albums: Album[]) => {
       this.chart = albums;
     });
   }

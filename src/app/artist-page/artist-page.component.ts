@@ -25,10 +25,16 @@ export class ArtistPageComponent implements OnInit {
     this.pageId = this.route.snapshot.paramMap.get('id');
     this.artistService.getArtistById(this.pageId).subscribe((artist: Artist) => {
       this.artist = artist as ArtistExtended;
-      this.albumService.getAlbumsForArtist(this.pageId).subscribe((albums: Album[]) => {
-        this.artist.albums = albums;
-        this.loading = false;
-      });
+      this.albumService.getAlbumsForArtist(this.pageId).subscribe(
+        (albums: Album[]) => {
+          this.artist.albums = albums;
+          this.loading = false;
+        },
+        (err: Error) => {
+          this.artist.albums = [];
+          this.loading = false;
+        }
+      );
     });
   }
 }
